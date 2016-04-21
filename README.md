@@ -17,7 +17,7 @@ add the require for ouath and twitter specific code from this package
 
 ```js
 var oauth = require('oauth-electron-twitter').oauth;
-var twitter = require('oauth-electron-twitter').facebook;
+var facebook = require('oauth-electron-twitter').facebook;
 ```
 
 declare a twitter object, and use it as parameter for the oauth in conjuntion with the electron window used to display the login
