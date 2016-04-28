@@ -22,7 +22,7 @@ var facebook = require('oauth-electron-twitter').facebook;
 
 declare a twitter object, and use it as parameter for the oauth in conjuntion with the electron window used to display the login
 ```js
-var info = new facebook("key","secret");
+var info = new facebook("key","secret", <scope>, <params>);
 var auth = new oauth();
 auth.login(info, window);
 ```
@@ -30,7 +30,7 @@ the login function will return a Promise with the acces token and secret
 ```
 {
     oauth_access_token: ***,
-    oauth_access_token_secret: ***
+    oauth_refresh_token: ***
 }
 ```
 

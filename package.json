@@ -1,6 +1,6 @@
 {
   "name": "oauth-electron-facebook",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "oauth for facebook inside electron",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,6 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "oauth": "^0.9.14",
-    "query-string": "^4.1.0"
+    "oauth": "^0.9.14"
   }
 }
