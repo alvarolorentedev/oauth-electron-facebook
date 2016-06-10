@@ -16,8 +16,8 @@ npm install oauth-electron-facebook --save
 add the require for ouath and twitter specific code from this package
 
 ```js
-var oauth = require('oauth-electron-twitter').oauth;
-var facebook = require('oauth-electron-twitter').facebook;
+var oauth = require('oauth-electron-facebook').oauth;
+var facebook = require('oauth-electron-facebook').facebook;
 ```
 
 declare a twitter object, and use it as parameter for the oauth in conjuntion with the electron window used to display the login
