@@ -48,7 +48,6 @@ describe('oauth should', () => {
     test('getTokens should return tokens if no error', async () => {
         let code = faker.random.uuid(),
             info = {
-                redirectUri: faker.random.uuid()
             },
             accessToken = faker.random.uuid(),
             refreshToken = faker.random.uuid(),
@@ -64,7 +63,7 @@ describe('oauth should', () => {
         expect(mockOauth.getOAuthAccessToken).toBeCalledWith(
             code,
             {
-                redirect_uri: info.redirectUri
+                redirect_uri: "http://localhost/"
             },
             expect.anything()
         )

@@ -29,8 +29,7 @@ declare a twitter object, and use it as parameter for the oauth in conjuntion wi
 var info = {
     key: ***,
     secret: ***,
-    scope: ***,
-    redirectUri: ***
+    scope: ***
 }
 auth.login(info, window)
 ```
