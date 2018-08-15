@@ -3,27 +3,25 @@ jest.mock('oauth', () =>({
 }))
 const Oauth = require('../../../lib/oauth'),
     OAuth2 = require('oauth').OAuth2,
-    url = require('url'),
     faker = require('faker')
 
 describe('oauth should', () => {
-    beforeEach(() => {
-    })
     test('construct using library', async () => {
         let info = { 
                 key: faker.random.uuid(),
                 secret: faker.random.uuid(),
-                baseUrl: faker.random.uuid(),
-                authPath: faker.random.uuid(),
-                tokenPath: faker.random.uuid(),
-                customHeaders: faker.random.uuid(),
             },
             expectedResult = { some: faker.random.uuid() }
         OAuth2.mockImplementation(() => expectedResult)
 
         let result = new Oauth(info)
         
-        expect(OAuth2).toBeCalledWith(info.key, info.secret, info.baseUrl, info.authPath, info.tokenPath, info.customHeaders)
+        expect(OAuth2).toBeCalledWith(
+            info.key, 
+            info.secret,
+            "", 
+            "https://www.facebook.com/dialog/oauth",
+            "https://graph.facebook.com/oauth/access_token")
         expect(result.oauth).toEqual(expectedResult)
     })
 
@@ -41,7 +39,7 @@ describe('oauth should', () => {
         let url = oauth.getAuthUrl()
         
         expect(mockOauth.getAuthorizeUrl).toBeCalledWith({
-            redirect_uri: info.redirectUrl,
+            redirect_uri: "http://localhost/",
             scope: info.scope
         })
         expect(url).toEqual(expectedResult)
@@ -50,7 +48,7 @@ describe('oauth should', () => {
     test('getTokens should return tokens if no error', async () => {
         let code = faker.random.uuid(),
             info = {
-                params: faker.random.uuid()
+                redirectUri: faker.random.uuid()
             },
             accessToken = faker.random.uuid(),
             refreshToken = faker.random.uuid(),
@@ -65,7 +63,9 @@ describe('oauth should', () => {
         
         expect(mockOauth.getOAuthAccessToken).toBeCalledWith(
             code,
-            info.params,
+            {
+                redirect_uri: info.redirectUri
+            },
             expect.anything()
         )
         expect(result).resolves.toEqual({accessToken, refreshToken})
