@@ -10,6 +10,10 @@ add it to your elenctron project using npm command
 ```
 npm install oauth-electron-facebook --save
 ```
+or 
+```
+yarn add oauth-electron-facebook
+```
 
 ## Usage
 
@@ -22,18 +26,25 @@ var facebook = require('oauth-electron-facebook').facebook;
 
 declare a twitter object, and use it as parameter for the oauth in conjuntion with the electron window used to display the login
 ```js
-var info = new facebook("key","secret", <scope>, <params>);
-var auth = new oauth();
-auth.login(info, window);
+var info = {
+    key: ***,
+    secret: ***,
+    scope: ***,
+    redirectUri: ***
+}
+auth.login(info, window)
 ```
 the login function will return a Promise with the acces token and secret
 ```
 {
-    oauth_access_token: ***,
-    oauth_refresh_token: ***
+    accessToken: ***,
+    refreshToken: ***
 }
 ```
+## Migration V0.x to V1.x
 
+- there is no more need for the facebook object, info becomes a basic object with the properties stated in the usage step.
+- the return object has a different format.
 
 
 ###### logo: Award graphic by <a href="http://www.freepik.com/">Freepik</a> and Letter F graphic by <a href="http://www.icomoon.io">Icomoon</a> from <a href="http://www.flaticon.com/">Flaticon</a> are licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made and modified with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
