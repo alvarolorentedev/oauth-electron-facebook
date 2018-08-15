@@ -10,40 +10,34 @@ Use Facebook OAuth in a simple way inside your electron App.
 
 ## Installation
 
-add it to your elenctron project using npm command
-```
-npm install oauth-electron-facebook --save
-```
-or 
-```
-yarn add oauth-electron-facebook
-```
+add it to your electron project using `npm install oauth-electron-facebook --save` or `yarn add oauth-electron-facebook`
 
 ## Usage
 
-add the require for ouath and twitter specific code from this package
+require `oauth-electron-facebook` exports a function that requires a javascript object and an electron window, as seen on the next example:
 
 ```js
-var oauth = require('oauth-electron-facebook').oauth;
-var facebook = require('oauth-electron-facebook').facebook;
-```
+const login = require('oauth-electron-facebook')
 
-declare a twitter object, and use it as parameter for the oauth in conjuntion with the electron window used to display the login
-```js
-var info = {
+let info = {
     key: ***,
     secret: ***,
     scope: ***
-}
+},
+window = new BrowserWindow({webPreferences: {nodeIntegration: false}});
+
 auth.login(info, window)
 ```
-the login function will return a Promise with the acces token and secret
+
+the login function will return a Promise with the access token and secret
+
 ```
 {
     accessToken: ***,
     refreshToken: ***
 }
 ```
+
 ## Migration V0.x to V1.x
 
 - there is no more need for the facebook object, info becomes a basic object with the properties stated in the usage step.
