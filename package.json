@@ -1,6 +1,6 @@
 {
   "name": "oauth-electron-facebook",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "oauth for facebook inside electron",
   "main": "index.js",
   "scripts": {
