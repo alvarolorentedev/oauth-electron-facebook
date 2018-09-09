@@ -130,7 +130,7 @@ describe('login should', () => {
             expect(true).toBeFalsy()
             
         } catch (error) {
-            expect(error).toEqual(`URL response is not correct, parameters are ${parsed.query}`)
+            expect(error).toEqual(`URL response is not correct, parameters are ${JSON.stringify(parsed.query)}`)
         }
     })
 
@@ -216,7 +216,7 @@ describe('login should', () => {
             expect(true).toBeFalsy()
             
         } catch (error) {
-            expect(error).toEqual(`URL response is not correct, parameters are ${parsed.query}`)
+            expect(error).toEqual(`URL response is not correct, parameters are ${JSON.stringify(parsed.query)}`)
         }
     })
 })
