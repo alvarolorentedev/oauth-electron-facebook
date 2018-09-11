@@ -51,90 +51,6 @@ describe('login should', () => {
         }
     })
 
-    test('should get oauth tokens when navigates', async () => {
-        let childEmitter = new TestEmitter(),
-            window = {
-                loadURL: jest.fn(),
-                webContents: childEmitter
-            },
-            authUrl = faker.internet.url(),
-            tokens = faker.random.uuid(),
-            mockOauth = { 
-                getAuthUrl: jest.fn(),
-                getTokens: jest.fn(() => Promise.resolve(tokens)) 
-            },
-            parsed = {
-                query: {
-                    code: faker.random.uuid()
-                }
-            }
-        Oauth.mockImplementation(() => mockOauth)
-        url.parse.mockReturnValue(parsed)
-
-        let result = login(undefined, window)
-        window.webContents.emit('will-navigate', undefined, authUrl)
-        result = await result
-        expect(url.parse).toBeCalledWith(authUrl, true)
-        expect(mockOauth.getTokens).toBeCalledWith(parsed.query.code)
-        expect(result).toEqual(tokens)
-    })
-
-    test('should rejects when navigates', async () => {
-        let childEmitter = new TestEmitter(),
-            window = {
-                loadURL: jest.fn(),
-                webContents: childEmitter
-            },
-            authUrl = faker.internet.url(),
-            err = faker.random.uuid(),
-            mockOauth = { 
-                getAuthUrl: jest.fn(),
-                getTokens: jest.fn(() => Promise.reject(err)) 
-            }
-        Oauth.mockImplementation(() => mockOauth)
-        try {
-            let result = login(undefined, window)
-            window.webContents.emit('will-navigate', undefined, authUrl)
-            result = await result
-            expect(true).toBeFalsy()
-            
-        } catch (error) {
-            expect(error).toEqual(err)
-        }
-    })
-
-    test('should rejects when no code in url', async () => {
-        let childEmitter = new TestEmitter(),
-        window = {
-            loadURL: jest.fn(),
-            webContents: childEmitter,
-                show: jest.fn()
-        },
-        authUrl = faker.internet.url(),
-        tokens = faker.random.uuid(),
-        mockOauth = { 
-            getAuthUrl: jest.fn(),
-        },
-        parsed = {
-            query: {
-                error: faker.random.uuid()
-            }
-        }
-        Oauth.mockImplementation(() => mockOauth)
-        url.parse.mockReturnValue(parsed)
-
-        try {
-            let result = login(undefined, window)
-            window.webContents.emit('will-navigate', undefined, authUrl)
-            result = await result
-            expect(true).toBeFalsy()
-            
-        } catch (error) {
-            expect(error).toEqual(`URL response is not correct, parameters are ${JSON.stringify(parsed.query)}`)
-        }
-    })
-
-    //--------------------------------------
     test('should get oauth tokens when navigates redirect', async () => {
         let childEmitter = new TestEmitter(),
             window = {
@@ -159,7 +75,6 @@ describe('login should', () => {
         let result = login(undefined, window)
         window.webContents.emit('did-get-redirect-request', undefined, undefined, authUrl)
         result = await result
-        expect(window.show).toBeCalled()
         expect(url.parse).toBeCalledWith(authUrl, true)
         expect(mockOauth.getTokens).toBeCalledWith(parsed.query.code)
         expect(result).toEqual(tokens)
