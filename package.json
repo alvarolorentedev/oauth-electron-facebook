@@ -33,8 +33,10 @@
   },
   "devDependencies": {
     "coveralls": "3.0.2",
+    "electron": "2.0.9",
     "faker": "4.1.0",
-    "jest": "23.5.0"
+    "jest": "23.5.0",
+    "spectron": "4.0.0"
   },
   "dependencies": {
     "oauth": "0.9.15",
