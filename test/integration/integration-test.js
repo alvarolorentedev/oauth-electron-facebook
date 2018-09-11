@@ -17,16 +17,11 @@ describe('oauth electron', () => {
         if (app && app.isRunning())
             await app.stop() 
     })
-
+    
     it('should load electron app for facebook oauth', async () => {
-        await app.client.setValue('#email', 'fmjmgokhna_1536522604@tfbnw.net')
-        await app.client.setValue('#pass', 'sticky.benison.dodge')
+        await app.client.setValue('#email', process.env.FB_USERNAME)
+        await app.client.setValue('#pass', process.env.FB_PASSWORD)
         await app.client.click('#loginbutton') 
-        await app.client.getMainProcessLogs().then(function (logs) {
-            logs.forEach(function (log) {
-              console.log(log)
-            })
-          })
         await app.client.waitUntilTextExists('#result', 'Success')
     });
 });
