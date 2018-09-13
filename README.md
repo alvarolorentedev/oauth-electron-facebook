@@ -17,7 +17,7 @@ add it to your electron project using `npm install oauth-electron-facebook --sav
 require `oauth-electron-facebook` exports a function that requires a javascript object and an electron window, as seen on the next example:
 
 ```js
-const login = require('oauth-electron-facebook')
+const auth = require('oauth-electron-facebook')
 
 let info = {
     key: ***,
