@@ -18,6 +18,7 @@ require `oauth-electron-facebook` exports a function that requires a javascript 
 
 ```js
 const auth = require('oauth-electron-facebook')
+const { BrowserWindow, session } = require('electron')
 
 let info = {
     key: ***,
@@ -26,7 +27,7 @@ let info = {
 },
 window = new BrowserWindow({webPreferences: {nodeIntegration: false}});
 
-auth.login(info, window)
+auth.login(info, window, session)
 ```
 
 the login function will return a Promise with the access token and secret
