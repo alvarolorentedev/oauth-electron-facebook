@@ -1,6 +1,6 @@
 # ![logo_fb](https://cloud.githubusercontent.com/assets/3071208/14721795/aa18135a-0808-11e6-987b-14583e3fbb1d.png)
 [![Build Status](https://travis-ci.org/kanekotic/oauth-electron-facebook.svg?branch=master)](https://travis-ci.org/kanekotic/oauth-electron-facebook)
-[![Coverage Status](https://coveralls.io/repos/github/kanekotic/oauth-electron-facebook/badge.svg?branch=master)](https://coveralls.io/github/kanekotic/oauth-electron-facebook?branch=master)
+[![codecov](https://codecov.io/gh/kanekotic/oauth-electron-facebook/branch/master/graph/badge.svg)](https://codecov.io/gh/kanekotic/oauth-electron-facebook)
 [![npm](https://img.shields.io/npm/dy/oauth-electron-facebook.svg)](https://github.com/kanekotic/oauth-electron-facebook)
 [![GitHub license](https://img.shields.io/github/license/kanekotic/oauth-electron-facebook.svg)](https://github.com/kanekotic/oauth-electron-facebook/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kanekotic/oauth-electron-facebook/graphs/commit-activity)
