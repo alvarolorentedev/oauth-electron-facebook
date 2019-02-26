@@ -33,10 +33,17 @@ the login function will return a Promise with the access token and secret
 
 ```
 {
-    accessToken: ***,
-    refreshToken: ***
+    "access_token":<string>,
+    "token_type":<string>,
+    "expires_in":<number>
 }
 ```
+
+## Migration V1.x to V2.x
+
+- the response from facebook has changed so please adapt, there does not seem to be any refresh token anymore
+- session is required to be passed as events of chromium have changed
+- localhost is not anymore an accepted url for redirect configure and use "https://www.facebook.com/connect/login_success.html"
 
 ## Migration V0.x to V1.x
 

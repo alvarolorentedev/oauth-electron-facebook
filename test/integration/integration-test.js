@@ -2,10 +2,10 @@ const Application = require('spectron').Application
 const electronPath = require('electron'),
     path = require('path')
 
-describe.skip('oauth electron', () => {
+    jest.setTimeout(20000)
+describe('oauth electron', () => {
     let app
     beforeAll(async () => {
-        jest.setTimeout(10000)
         app = new Application({
             path: electronPath,
             args: [path.join(__dirname, './app/main.js')]

@@ -39,7 +39,7 @@ describe('oauth should', () => {
         let url = oauth.getAuthUrl()
         
         expect(mockOauth.getAuthorizeUrl).toBeCalledWith({
-            redirect_uri: "http://localhost/",
+            redirect_uri: "https://www.facebook.com/connect/login_success.html",
             scope: info.scope
         })
         expect(url).toEqual(expectedResult)
@@ -49,39 +49,44 @@ describe('oauth should', () => {
         let code = faker.random.uuid(),
             info = {
             },
-            accessToken = faker.random.uuid(),
-            refreshToken = faker.random.uuid(),
+            expected = {
+                accessToken: faker.random.uuid(),
+                other: faker.random.uuid()
+            },
             mockOauth = { 
-                getOAuthAccessToken: jest.fn((_,__,cb) => cb(undefined, accessToken,refreshToken)) 
+                getOAuthAccessToken: jest.fn((_,__,cb) => cb(undefined, undefined, undefined, expected)) 
             }
             
         OAuth2.mockImplementation(() => mockOauth)
 
         let oauth = new Oauth(info)
-        let result = oauth.getTokens(code)
+        let result = await oauth.getTokens(code)
         
         expect(mockOauth.getOAuthAccessToken).toBeCalledWith(
             code,
             {
-                redirect_uri: "http://localhost/"
+                redirect_uri: "https://www.facebook.com/connect/login_success.html"
             },
             expect.anything()
         )
-        expect(result).resolves.toEqual({accessToken, refreshToken})
+        return expect(result).toEqual(expected)
     })
 
     test('getTokens should reject if error', async () => {
         let error = faker.random.uuid(),
         mockOauth = { 
-            getOAuthAccessToken: jest.fn((_,__,cb) => cb(error, undefined, undefined)) 
+            getOAuthAccessToken: jest.fn((_,__,cb) => cb(error)) 
         }
             
         OAuth2.mockImplementation(() => mockOauth)
 
         let oauth = new Oauth({})
-        let result = oauth.getTokens("pepe")
-        
-        expect(result).rejects.toEqual(error)
+        try {
+            await oauth.getTokens("pepe")
+            fail()
+        } catch (e) {
+            expect(e).toEqual(error)
+        } 
     })
 
 })
