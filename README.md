@@ -40,6 +40,12 @@ the login function will return a Promise with the access token and secret
 }
 ```
 
+## Security
+
+Consider this before you integrate this library in your application:
+- It is a bad practice to hardcode `keys` & `secrets` in code that is going to be shipped.
+- If you are looking to have your own backend, consider using it for authentication with 3rd party services. [IETF RFC 8252](https://tools.ietf.org/html/rfc8252).
+
 ## Migration V1.x to V2.x
 
 - the response from facebook has changed so please adapt, there does not seem to be any refresh token anymore
