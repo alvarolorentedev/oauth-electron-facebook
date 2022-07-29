@@ -3,7 +3,7 @@ const electronPath = require('electron'),
     path = require('path')
 
     jest.setTimeout(20000)
-describe('oauth electron', () => {
+describe.skip('oauth electron', () => {
     let app
     beforeAll(async () => {
         app = new Application({

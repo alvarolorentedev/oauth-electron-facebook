@@ -21,7 +21,7 @@ jobs:
       - name: install dependencies
         run: yarn install
       - name: test
-        run: yarn test:cov
+        run: yarn test
       - uses: mikeal/merge-release@master
         if: github.event_name != 'pull_request'
         env:
